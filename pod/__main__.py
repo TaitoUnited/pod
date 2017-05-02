@@ -4,15 +4,15 @@ from flask import abort, Flask, request, send_file
 
 from weasyprint import CSS, HTML
 
-app = Flask(__name__)
+application = Flask(__name__)
 
 
-@app.route('/', methods=['GET'])
+@application.route('/', methods=['GET'])
 def status():
     return 'Welcome to P.O.D.', 200
 
 
-@app.route('/', methods=['POST'])
+@application.route('/', methods=['POST'])
 def generate():
     html_input = request.form.get('html')
     css_input = request.form.get('css', '')
@@ -32,4 +32,4 @@ def generate():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0')
+    application.run(host='0.0.0.0')
