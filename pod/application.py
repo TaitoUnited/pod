@@ -1,7 +1,8 @@
 import io
 
-from flask import abort, Flask, request, send_file
+from flask import Flask, abort, request, send_file
 
+from pod import fetcher
 from weasyprint import CSS, HTML
 
 application = Flask(__name__)
@@ -22,14 +23,10 @@ def generate():
 
     output = io.BytesIO()
 
-    html_object = HTML(string=html_input)
+    html_object = HTML(string=html_input, url_fetcher=fetcher)
     css_object = CSS(string=css_input)
 
     html_object.write_pdf(output, stylesheets=[css_object])
 
     output.seek(0)
     return send_file(output, mimetype='application/pdf')
-
-
-if __name__ == '__main__':
-    application.run(host='0.0.0.0')
