@@ -1,7 +1,6 @@
 import io
 
 from flask import Flask, abort, request, send_file
-
 from pod import fetcher
 from weasyprint import CSS, HTML
 
