@@ -228,7 +228,7 @@ def fetcher(url):
         response = urlopen(Request(url, headers=HTTP_HEADERS), timeout=TIMEOUT)
         result = dict(redirected_url=response.geturl(),
                       mime_type=response.info().get_content_type(),
-                      encoding=response.info().getparam('charset'),
+                      encoding=response.info().get_param('charset'),
                       filename=response.info().get_filename())
         content_encoding = response.info().get('Content-Encoding')
         if content_encoding == 'gzip':
