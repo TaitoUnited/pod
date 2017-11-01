@@ -221,6 +221,9 @@ HTTP_HEADERS = {
 
 
 def fetcher(url):
+    if url.lower().startswith('file:'):
+        raise ValueError('No local files allowed')
+
     if url.lower().startswith('data:'):
         return open_data_url(url)
     elif UNICODE_SCHEME_RE.match(url):
