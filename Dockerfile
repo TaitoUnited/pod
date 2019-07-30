@@ -1,4 +1,4 @@
-FROM    python:alpine
+FROM    python:alpine3.10
 
 ENV     HOME=/app
 ENV     PYTHONPATH=${HOME}
