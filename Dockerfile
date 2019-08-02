@@ -7,12 +7,16 @@ ENV     LIBRARY_PATH=/lib:/usr/lib
 
 WORKDIR ${HOME}
 
-RUN     apk add --update-cache build-base pango-dev cairo-dev libffi-dev libxml2-dev libxslt-dev jpeg-dev zlib-dev ttf-dejavu
+RUN     apk add --update-cache build-base pango-dev cairo-dev libffi-dev libxml2-dev libxslt-dev jpeg-dev zlib-dev ttf-dejavu uwsgi uwsgi-python3
+RUN     chown -R guest:users ${HOME}
+
+USER    guest
 
 COPY    ./pod/requirements.txt ${HOME}/pod/
 
-RUN     pip3 install -r ${HOME}/pod/requirements.txt
+RUN     pip3 install --user -r ${HOME}/pod/requirements.txt
 
+COPY    ./uwsgi-config.ini ${HOME}/pod.ini
 COPY    ./pod/ ${HOME}/pod/
 
-CMD     ["python3", "-m", "pod"]
+CMD     ["sh", "-c", "uwsgi --ini ${HOME}/pod.ini"]
