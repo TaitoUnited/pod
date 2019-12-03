@@ -1,2 +1,2 @@
 Flask
-WeasyPrint==48
+WeasyPrint==50
