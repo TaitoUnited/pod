@@ -7,7 +7,7 @@ ENV     LIBRARY_PATH=/lib:/usr/lib
 
 WORKDIR ${HOME}
 
-RUN     apk add --update-cache build-base pango-dev cairo-dev libffi-dev libxml2-dev libxslt-dev jpeg-dev zlib-dev ttf-dejavu uwsgi uwsgi-python3
+RUN     apk add --update-cache build-base pango-dev cairo-dev libffi-dev libxml2-dev libxslt-dev jpeg-dev zlib-dev ttf-dejavu uwsgi uwsgi-python3 musl-dev gdk-pixbuf-dev
 RUN     chown -R guest:users ${HOME}
 
 USER    guest
