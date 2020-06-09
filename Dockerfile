@@ -19,4 +19,6 @@ RUN     pip3 install --user -r ${HOME}/pod/requirements.txt
 COPY    ./uwsgi-config.ini ${HOME}/pod.ini
 COPY    ./pod/ ${HOME}/pod/
 
+RUN     chmod -R go+rx ${HOME}/.local
+
 CMD     ["sh", "-c", "uwsgi --ini ${HOME}/pod.ini"]
