@@ -1,2 +1,2 @@
 Flask==2.1.2
-WeasyPrint==55
+WeasyPrint==60
